@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Mines WEBRTC demo</title>
+
+    <style type="text/css">
+      body {
+        margin: 0;
+        font-size: 20px;
+      }
+
+      .centered {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .video-position {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #video-chat-container {
+        width: 75%;
+        background-color: rgb(70, 206, 224);
+      }
+
+      #local-video {
+        position: left;
+        height: 30%;
+        width: 30%;
+        bottom: 0px;
+        left: 0px;
+      }
+
+      #remote-video {
+        position: right;
+        height: 35%;
+        width: 35%;
+        bottom: 0px;
+        left: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="room-selection-container" class="centered">
+      <h1>WELCOME TO ITMINES VIDEO CALL DEMO APPLICATION</h1>
+      <!-- <p>This app is built with node js express server and uses socketio library for signalling server.</p>
+      <p>We are using custom stun and turn server to connect between two peers with WEBRTC</p>
+      <p>Instructions to use this app: You can either start a call or join a call by entering the number of a Room.
+        If a room is not already created, the app will create it for you with the number that you enter, you can then share it 
+      with whom you want to connect. Once the other party enter the room number that you created, you both will be in a video conference. </p> -->
+      <label>Enter the number of the room you want to connect</label>
+      <input id="room-input" type="text" />
+      <button id="connect-button">CONNECT</button>
+    </div>
+
+    <div id="video-chat-container" class="video-position" style="display: none">
+      <video id="local-video" autoplay="autoplay" muted="muted"></video>
+      <video id="remote-video" autoplay="autoplay"></video>
+    </div>
+
+    <!-- record part -->
+    <div id="record-controls"> 
+      <!-- <button id="shareBtn">Share Screen</button> -->
+			<button id="rec" onclick="onBtnRecordClicked()">Record</button>
+			<button id="pauseRes"   onclick="onPauseResumeClicked()" disabled>Pause</button>
+			<button id="stop"  onclick="onBtnStopClicked()" disabled>Stop</button>
+      <button id="startc">Start Capture</button>
+      <button id="stopc">Stop Capture</button>
+			<!-- <button id="stateButton" onclick="onStateClicked()">trace state</button> -->
+		</div>
+    <div>
+      <video id="cvideo" ></video>
+      <br>
+      <strong>Log:</strong>
+      <br>
+      <pre id="log"></pre>
+    </div>
+    <video id="playback" controls autoplay></video><br>
+    <a id="downloadLink" download="mediarecorder.webm" name="mediarecorder.webm" href></a>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="client.js"></script>      
+  </body>
+</html>
+
